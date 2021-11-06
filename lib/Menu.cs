@@ -8,7 +8,10 @@ namespace InteractiveMenu
 		protected string Title;
 		protected string Description;
 		private List<MenuAction> MenuActions = new List<MenuAction>();
-		private Dictionary<string, int> CommandIndex = new Dictionary<string, int>();
+		
+		// GOTCHA: Do not have a command index, even though it would help performance (negligible for a menu)
+		// because if a command changes, this CommandIndex does not get updated.
+		//private Dictionary<string, int> CommandIndex = new Dictionary<string, int>();
 		
 		public abstract void MenuInit();
 		
@@ -20,13 +23,6 @@ namespace InteractiveMenu
 			MenuAction action = (T)Activator.CreateInstance(typeof(T), args);
 			SetupMenuAction(action);
 		}
-		/* Old way doesn't allow args:
-		protected void Add<T>() where T : MenuAction, new()
-		{
-			MenuAction action = new T();
-			SetupMenuAction(action);
-		}
-		*/
 		
 		private void SetupMenuAction(MenuAction action)
 		{
@@ -37,16 +33,11 @@ namespace InteractiveMenu
 				((Menu)action).MenuInit();
 			}
 			
-			if (action.Command != null && CommandIndex.ContainsKey(action.Command))
+			if (CommandFoundInMenuActions(action.Command))
 			{
 				Console.WriteLine($"Command \"{action.Command}\" is already used in this menu. Skipping \"{action.MenuDisplay()}\"");
 				Console.ReadLine(); // https://stackoverflow.com/a/45479761/508558
 				return;
-			}
-			
-			if (action.Command != null)
-			{
-				CommandIndex[action.Command] = MenuActions.Count;
 			}
 			
 			MenuActions.Add(action);
@@ -82,14 +73,42 @@ namespace InteractiveMenu
 				do {
 					Console.WriteLine("\nChoose Option:");
 					command = Console.ReadLine();
-					if (CommandIndex.ContainsKey(command) == false)
+					
+					if (CommandFoundInMenuActions(command) == false)
 					{
 						Console.WriteLine($"Option \"{command}\" does not exist in this menu.");
 					}
-				} while(CommandIndex.ContainsKey(command) == false);
+					
+				} while(CommandFoundInMenuActions(command) == false);
 				
-				menuSignal = MenuActions[CommandIndex[command]].Action();
+				menuSignal = PerformCommandAction(command);
 			} while(menuSignal == MenuSignal.Continue);
+			
+			return MenuSignal.Continue;
+		}
+		
+		private bool CommandFoundInMenuActions(string command)
+		{
+			foreach (MenuAction menuAction in MenuActions)
+			{
+				if (menuAction.Command != null && menuAction.Command == command)
+				{
+					return true;
+				}
+			}
+			
+			return false;
+		}
+		
+		private MenuSignal PerformCommandAction(string command)
+		{
+			foreach (MenuAction menuAction in MenuActions)
+			{
+				if (menuAction.Command != null && menuAction.Command == command)
+				{
+					return menuAction.Action();
+				}
+			}
 			
 			return MenuSignal.Continue;
 		}
