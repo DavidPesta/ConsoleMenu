@@ -24,7 +24,7 @@ namespace InteractiveMenu
 			}
 			else
 			{
-				display = $"\x1B[1m\x1B[92m{Command}\x1B[0m. {MenuText}";
+				display = $"{Color.Bold}{Color.Green}{Command}{Color.Normal}. {MenuText}";
 			}
 			
 			return display;
