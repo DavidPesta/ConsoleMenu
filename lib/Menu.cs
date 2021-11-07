@@ -49,7 +49,7 @@ namespace InteractiveMenu
 			
 			if (Title != null)
 			{
-				Console.WriteLine($"{Title}\n");
+				Console.WriteLine($"{Color.Bold}{Color.Underline}{Title}{Color.Normal}\n");
 			}
 			
 			if (Description != null)
