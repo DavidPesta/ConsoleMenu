@@ -5,8 +5,8 @@ namespace InteractiveMenu
 {
 	public abstract class Menu : MenuAction
 	{
-		protected string Title;
-		protected string Description;
+		public virtual string Title {get; protected set;}
+		public virtual string Description {get; protected set;}
 		private List<MenuAction> MenuActions = new List<MenuAction>();
 		
 		// GOTCHA: Do not have a command index, even though it would help performance (negligible for a menu)
