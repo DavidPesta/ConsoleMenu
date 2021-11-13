@@ -1,5 +1,3 @@
-using System;
-
 namespace InteractiveMenu
 {
 	public class ChangeDataOption : MenuAction

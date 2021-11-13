@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace InteractiveMenu
 {
 	public abstract class Menu : MenuAction
