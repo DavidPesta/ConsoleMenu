@@ -1,8 +1,8 @@
 ## About
 
-By adding the files in lib to a new project, you can put together a very quick and effective console menu system with menu items that are tied to actions.
+By adding the files in util to a new project, you can put together a very quick and effective console menu system with menu items that are tied to actions.
 
-The files that exist outside of the lib folder are a super clumsy example of the simple and powerful ways to put the menu together.
+The files that exist outside of the util folder are a super clumsy example of the simple and powerful ways to put the menu together.
 
 To add color and flair to your console menu, definitely add one of these to your project:
 - https://stackoverflow.com/q/2743260/508558 (standard color for console built-in)

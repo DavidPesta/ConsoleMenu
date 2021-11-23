@@ -1,4 +1,4 @@
-namespace InteractiveMenu
+namespace ConsoleMenu
 {
 	public static class Color
 	{

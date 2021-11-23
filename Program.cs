@@ -1,4 +1,4 @@
-﻿using InteractiveMenu;
+﻿using ConsoleMenu;
 
 var data = new ProgramData();
 
