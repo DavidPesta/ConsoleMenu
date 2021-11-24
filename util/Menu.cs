@@ -10,7 +10,7 @@ namespace ConsoleMenu
 		// because if a command changes, this CommandIndex does not get updated.
 		//private Dictionary<string, int> CommandIndex = new Dictionary<string, int>();
 		
-		public abstract void MenuInit();
+		public abstract void Compose();
 		
 		// https://stackoverflow.com/q/11234452/508558
 		// https://stackoverflow.com/a/5598999/508558
@@ -25,11 +25,6 @@ namespace ConsoleMenu
 		{
 			action.SetData(Data);
 			
-			if (action is Menu)
-			{
-				((Menu)action).MenuInit();
-			}
-			
 			if (CommandFoundInMenuActions(action.Command))
 			{
 				Console.WriteLine($"Command \"{action.Command}\" is already used in this menu. Skipping \"{action.MenuDisplay()}\"");
@@ -42,6 +37,9 @@ namespace ConsoleMenu
 		
 		private void DisplayMenu()
 		{
+			MenuActions.Clear();
+			Compose();
+			
 			Console.Clear();
 			
 			if (Title != null)

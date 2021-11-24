@@ -8,7 +8,7 @@ namespace ConsoleMenu
 			MenuText = "Deeper Menu";
 		}
 		
-		public override void MenuInit()
+		public override void Compose()
 		{
 			// Note: Data can be used here to build the menu title, description, and options.
 			
