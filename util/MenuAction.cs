@@ -4,8 +4,8 @@ namespace ConsoleMenu
 	{
 		protected ProgramData Data;
 		
-		public virtual string Command {get; protected set;}
-		public virtual string MenuText {get; protected set;}
+		public virtual string Command { get; protected set; }
+		public virtual string MenuText { get; protected set; }
 		
 		public abstract MenuSignal Action();
 		
