@@ -1,3 +1,9 @@
+/*
+* Console Menu - MIT License
+* Copyright (c) 2021 David Pesta
+* https://github.com/DavidPesta/ConsoleMenu
+*/
+
 namespace ConsoleMenu
 {
 	public abstract class Menu : MenuAction
