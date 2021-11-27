@@ -48,12 +48,12 @@ namespace ConsoleMenu
 			
 			Console.Clear();
 			
-			if (Title != null)
+			if (!string.IsNullOrEmpty(Title))
 			{
 				Console.WriteLine($"{Color.Bold}{Color.Underline}{Title}{Color.Normal}\n");
 			}
 			
-			if (Description != null)
+			if (!string.IsNullOrEmpty(Description))
 			{
 				Console.WriteLine($"{Description}\n");
 			}
